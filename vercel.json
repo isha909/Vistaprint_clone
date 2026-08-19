@@ -1,13 +1,24 @@
 {
   "functions": {
-    "api/**/*.php": {
-      "runtime": "vercel-php@0.7.2"
-    },
-    "*.php": {
-      "runtime": "vercel-php@0.7.2"
-    }
+    "index.php": { "runtime": "vercel-php@0.9.0" },
+    "category.php": { "runtime": "vercel-php@0.9.0" },
+    "subcategory.php": { "runtime": "vercel-php@0.9.0" },
+    "view-all.php": { "runtime": "vercel-php@0.9.0" },
+    "help.php": { "runtime": "vercel-php@0.9.0" },
+    "cart.php": { "runtime": "vercel-php@0.9.0" },
+    "checkout.php": { "runtime": "vercel-php@0.9.0" },
+    "product.php": { "runtime": "vercel-php@0.9.0" },
+    "search.php": { "runtime": "vercel-php@0.9.0" },
+    "login.php": { "runtime": "vercel-php@0.9.0" },
+    "register.php": { "runtime": "vercel-php@0.9.0" },
+    "track-order.php": { "runtime": "vercel-php@0.9.0" },
+    "debug_products.php": { "runtime": "vercel-php@0.9.0" },
+    "database_setup.php": { "runtime": "vercel-php@0.9.0" }
   },
   "routes": [
+    { "src": "/assets/(.*)", "dest": "/assets/$1" },
+    { "src": "/$", "dest": "/index.php" },
+    { "src": "/(index|category|subcategory|view-all|help|cart|checkout|product|search|login|register|track-order)", "dest": "/$1.php" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }
