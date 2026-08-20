@@ -55,5 +55,5 @@ if ($conn && !$conn->connect_error && !isset($conn_error)) {
 
 // App Constants
 define('APP_NAME', 'Vistaprint');
-// define('CURRENCY_SYMBOL', '₹');
+define('CURRENCY_SYMBOL', '₹');
 ?>
