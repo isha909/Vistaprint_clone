@@ -1,4 +1,9 @@
 <?php
+if (defined('APP_CONFIG_LOADED')) {
+    return;
+}
+define('APP_CONFIG_LOADED', true);
+
 // Prevent direct access to config file
 if (basename($_SERVER['PHP_SELF']) == 'config.php') {
     die('Direct access not permitted');
@@ -24,7 +29,7 @@ try {
     if (!$conn) {
         throw new Exception("mysqli_init failed");
     }
-    
+
     $flags = 0;
     if (DB_SSL) {
         $ca_path = getenv('DB_SSL_CA') ?: (__DIR__ . '/ca.pem');
@@ -35,7 +40,7 @@ try {
         $conn->options(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true);
         $flags = MYSQLI_CLIENT_SSL;
     }
-    
+
     if (!@$conn->real_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT, NULL, $flags)) {
         throw new Exception("Connection failed: " . $conn->connect_error);
     }
