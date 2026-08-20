@@ -1,15 +1,32 @@
 <?php
 header('Content-Type: text/plain');
 
-define('DB_HOST', '127.0.0.1');
-define('DB_USER', 'root');
-define('DB_PASS', '');
-define('DB_NAME', 'vistaprint_db');
+define('DB_HOST', getenv('DB_HOST') ?: '127.0.0.1');
+define('DB_USER', getenv('DB_USER') ?: 'root');
+define('DB_PASS', getenv('DB_PASS') !== false ? getenv('DB_PASS') : '');
+define('DB_NAME', getenv('DB_NAME') ?: 'vistaprint_db');
+define('DB_PORT', getenv('DB_PORT') ?: 3306);
+define('DB_SSL', getenv('DB_SSL') ? filter_var(getenv('DB_SSL'), FILTER_VALIDATE_BOOLEAN) : false);
 
 echo "Starting Vistaprint Database Setup...\n";
 
-$conn = @new mysqli(DB_HOST, DB_USER, DB_PASS);
-if ($conn->connect_error) {
+$conn = mysqli_init();
+if (!$conn) {
+    die("mysqli_init failed\n");
+}
+
+$flags = 0;
+if (DB_SSL) {
+    $ca_path = getenv('DB_SSL_CA') ?: (__DIR__ . '/ca.pem');
+    if (!file_exists($ca_path)) {
+        die("SSL CA certificate file not found at: " . $ca_path . "\n");
+    }
+    $conn->ssl_set(NULL, NULL, $ca_path, NULL, NULL);
+    $conn->options(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true);
+    $flags = MYSQLI_CLIENT_SSL;
+}
+
+if (!@$conn->real_connect(DB_HOST, DB_USER, DB_PASS, null, DB_PORT, null, $flags)) {
     die("Connection failed: " . $conn->connect_error . "\n");
 }
 

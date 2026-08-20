@@ -11,9 +11,7 @@
     "search.php": { "runtime": "vercel-php@0.9.0" },
     "login.php": { "runtime": "vercel-php@0.9.0" },
     "register.php": { "runtime": "vercel-php@0.9.0" },
-    "track-order.php": { "runtime": "vercel-php@0.9.0" },
-    "debug_products.php": { "runtime": "vercel-php@0.9.0" },
-    "database_setup.php": { "runtime": "vercel-php@0.9.0" }
+    "track-order.php": { "runtime": "vercel-php@0.9.0" }
   },
   "routes": [
     { "src": "/assets/(.*)", "dest": "/assets/$1" },

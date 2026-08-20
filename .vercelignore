@@ -1,3 +1,5 @@
 scratch/
 database/schema.sql
 database/seed.sql
+database_setup.php
+debug_products.php

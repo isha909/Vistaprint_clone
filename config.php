@@ -14,22 +14,30 @@ define('DB_HOST', getenv('DB_HOST') ?: '127.0.0.1');
 define('DB_USER', getenv('DB_USER') ?: 'root');
 define('DB_PASS', getenv('DB_PASS') !== false ? getenv('DB_PASS') : '');
 define('DB_NAME', getenv('DB_NAME') ?: 'vistaprint_db');
+define('DB_PORT', getenv('DB_PORT') ?: 3306);
+define('DB_SSL', getenv('DB_SSL') ? filter_var(getenv('DB_SSL'), FILTER_VALIDATE_BOOLEAN) : false);
 
 // Establish Database Connection
 $conn = null;
 try {
-    // Connect to mysql server
-    $conn = @new mysqli(DB_HOST, DB_USER, DB_PASS);
-    
-    // Check connection
-    if ($conn->connect_error) {
-        throw new Exception("Connection failed: " . $conn->connect_error);
+    $conn = mysqli_init();
+    if (!$conn) {
+        throw new Exception("mysqli_init failed");
     }
     
-    // Try to select database
-    if (!@$conn->select_db(DB_NAME)) {
-        // Database might not exist yet, we will handle database creation in database_setup.php
-        $conn_error = "Database '" . DB_NAME . "' does not exist. Please run database_setup.php to set it up.";
+    $flags = 0;
+    if (DB_SSL) {
+        $ca_path = getenv('DB_SSL_CA') ?: (__DIR__ . '/ca.pem');
+        if (!file_exists($ca_path)) {
+            throw new Exception("SSL CA certificate file not found at: " . $ca_path);
+        }
+        $conn->ssl_set(NULL, NULL, $ca_path, NULL, NULL);
+        $conn->options(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, true);
+        $flags = MYSQLI_CLIENT_SSL;
+    }
+    
+    if (!@$conn->real_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME, DB_PORT, NULL, $flags)) {
+        throw new Exception("Connection failed: " . $conn->connect_error);
     }
 } catch (Exception $e) {
     $conn_error = $e->getMessage();
