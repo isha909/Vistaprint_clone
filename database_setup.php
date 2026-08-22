@@ -165,7 +165,7 @@ echo "Seeded categories: " . count($category_ids) . "\n";
 // Columns: category_name, subcategory_name, is_new, image_url
 $subcategories = [
     // Category: Visiting Cards
-    ['Visiting Cards', 'Visiting Cards', 0, 'assets/images/vc.jpg'],
+    ['Visiting Cards', 'Visiting Cards', 0, 'assets/images/visiting.jpg'],
     ['Visiting Cards', 'Digital Visiting Cards', 0, 'assets/images/vc.jpg'],
     ['Visiting Cards', 'Brilliant Finishes', 0, 'assets/images/vc.jpg'],
     ['Visiting Cards', 'Standard Papers', 0, 'assets/images/vc.jpg'],
@@ -176,7 +176,7 @@ $subcategories = [
     ['Visiting Cards', 'Visiting Cards Holder', 0, 'assets/images/vc.jpg'],
 
     // Category: Stationery, Letterheads & Notebooks
-    ['Stationery, Letterheads & Notebooks', 'Custom Stationery', 0, 'assets/images/letter.jpg'],
+    ['Stationery, Letterheads & Notebooks', 'Custom Stationery', 0, 'assets/images/stationery.jpg'],
     ['Stationery, Letterheads & Notebooks', 'Office Supplies', 0, 'assets/images/office.jpg'],
     ['Stationery, Letterheads & Notebooks', 'Custom Notebooks and Diaries', 0, 'assets/images/office.jpg'],
     ['Stationery, Letterheads & Notebooks', 'Wedding Stationery', 0, 'assets/images/wedding1.jpg'],
@@ -192,7 +192,7 @@ $subcategories = [
     ['Stamps and Inks', 'Ink Pads & Refills', 0, 'assets/images/multi.jpg'],
 
     // Category: Signs, posters and marketing materials
-    ['Signs, posters and marketing materials', 'Signs & Posters', 0, 'assets/images/posters.jpg'],
+    ['Signs, posters and marketing materials', 'Signs & Posters', 0, 'assets/images/poster-view.jpg'],
     ['Signs, posters and marketing materials', 'Marketing Materials', 0, 'assets/images/banner.jpg'],
     ['Signs, posters and marketing materials', 'More in signs', 0, 'assets/images/posters.jpg'],
     ['Signs, posters and marketing materials', 'More in marketing', 0, 'assets/images/collapse.jpg'],
@@ -215,7 +215,7 @@ $subcategories = [
     ['Clothing Caps & Bags', 'Custom Bags', 0, 'assets/images/bag.jpg'],
     ['Clothing Caps & Bags', 'Tote Bags', 0, 'assets/images/canva.jpg'],
     ['Clothing Caps & Bags', 'Custom Caps', 0, 'assets/images/cap.jpg'],
-    ['Clothing Caps & Bags', 'Custom Activewear', 0, 'assets/images/outerwear.jpg'],
+    ['Clothing Caps & Bags', 'Custom Activewear', 0, 'assets/images/hoodies.jpg'],
 
     // Category: Mugs, Albums & gifts
     ['Mugs, Albums & gifts', 'Bestsellers', 0, 'assets/images/photo.jpg'],
